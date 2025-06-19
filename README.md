@@ -50,7 +50,7 @@ This is a **Progressive Web App (PWA)** that allows users to:
 
 ---
 
-## ❤️ Built With
+## ❤️ Built By
 
 Made by [@atomnft.eth](https://github.com/ATOMNFT)  
 Panda love and blockchain vibes 🐼💖

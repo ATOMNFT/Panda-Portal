@@ -1,0 +1,76 @@
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.3s, color 0.3s;
+  padding: 2em;
+  margin: 0;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2em;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+textarea, input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: #222;
+  color: #fff;
+}
+button {
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background-color: #2563eb;
+}
+.logo {
+  width: 100px;
+  display: block;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #0f0;
+}
+.result {
+  margin-top: 20px;
+}
+.wallet-entry {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px rgba(0,255,0,0.1);
+}
+body.dark {
+  background: #0d1117;
+  color: #c9d1d9;
+}
+body.light {
+  background: #f4f4f4;
+  color: #111;
+}
+body.light textarea,
+body.light input {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}
+body.light .container {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+body.light .wallet-entry {
+  background-color: #f9f9f9;
+  box-shadow: none;
+}

@@ -15,6 +15,11 @@ const ALCHEMY_BASE_URL = `https://eth-mainnet.g.alchemy.com/nft/v2/${ALCHEMY_API
 
 let currentView = 'text';
 
+function showTab(tabName) {
+  document.getElementById('nftTab').style.display = tabName === 'nft' ? 'block' : 'none';
+  document.getElementById('tokenTab').style.display = tabName === 'token' ? 'block' : 'none';
+}
+
 function toggleTheme() {
   document.body.classList.toggle('dark');
   document.body.classList.toggle('light');

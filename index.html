@@ -23,6 +23,12 @@
 
     <!-- 🧾 NFT Scanner Tab -->
     <div id="nftTab" class="tab-content">
+	  <div class="tracked-contracts" id="alwaysVisibleContracts">
+      <h4>Tracked NFT Contracts:</h4>
+      <div><code>0x29be0951309805ddcfa90592c3bf765925871344</code> (PandaMania)</div>
+      <div><code>0x870b1fa5d36696af7b3cfa0e2721872efd790b51</code> (Red Panda Pals)</div>
+      <div><code>0xc0613cde37d2eceddc496f3d85cec12ffa2bdd00</code> (Bamboo Buddies)</div>
+      </div>
       <p>Paste wallet addresses below that hold nfts by PandaMania_NFT (comma or newline separated):</p>
       <textarea id="wallets" title="Paste multiple Ethereum wallet addresses here."></textarea>
       <button onclick="checkWallets()" title="Click to scan for NFTs in the provided wallets.">Scan Wallets</button>

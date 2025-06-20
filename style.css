@@ -138,3 +138,46 @@ body.light .tracked-contracts h5 {
 body.light .app-description {
   background-color: #f0f0f0;
 }
+
+@media (max-width: 600px) {
+  body {
+    padding: 1em;
+  }
+
+  .container {
+    padding: 1em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  textarea, input {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .tabs button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .wallet-entry {
+    font-size: 0.95em;
+  }
+
+  .app-description ul {
+    padding-left: 1.2em;
+  }
+
+  .footer {
+    font-size: 0.85em;
+    padding: 1em;
+  }
+}

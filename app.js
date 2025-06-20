@@ -127,6 +127,20 @@ async function checkWallets() {
   tableDiv.appendChild(table);
 }
 
+// Animate numbers for token display
+function animateCount(el, value) {
+  const duration = 1000;
+  const startTime = performance.now();
+
+  function step(timestamp) {
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    el.textContent = (value * progress).toLocaleString(undefined, { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
 async function checkTokenBalance() {
   const trackWallet = document.getElementById('trackWallet').value.trim();
   const tokenResults = document.getElementById('tokenResults');
@@ -142,13 +156,17 @@ async function checkTokenBalance() {
   const walletDiv = document.createElement('div');
   walletDiv.innerHTML = `<strong>Tracking wallet:</strong> ${trackWallet}`;
 
-  try {
-    const tokenBalance = await tokenContract.balanceOf(trackWallet);
-    const formatted = ethers.utils.formatUnits(tokenBalance, 18);
-    walletDiv.innerHTML += `<br><strong>Total Panda Tokens:</strong> ${formatted}`;
-  } catch {
-    walletDiv.innerHTML += `<br> - Error checking Panda Token balance`;
-  }
+	try {
+	  const tokenBalance = await tokenContract.balanceOf(trackWallet);
+	  const formatted = parseFloat(ethers.utils.formatUnits(tokenBalance, 18));
+	  walletDiv.innerHTML += `<br><strong>Total Panda Tokens:</strong> <span id="animatedToken">0.0000</span>`;
+	  tokenResults.appendChild(walletDiv);
+
+	  // Animate the balance count
+	  animateCount(document.getElementById('animatedToken'), formatted);
+	} catch {
+	  walletDiv.innerHTML += `<br> - Error checking Panda Token balance`;
+	}
 
   tokenResults.appendChild(walletDiv);
 }

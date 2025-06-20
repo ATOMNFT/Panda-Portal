@@ -1,9 +1,9 @@
 
-const ethContractAddresses = [
-  '0x29be0951309805ddcfa90592c3bf765925871344',
-  '0x870b1fa5d36696af7b3cfa0e2721872efd790b51',
-  '0xc0613cde37d2eceddc496f3d85cec12ffa2bdd00'
-];
+const ethContracts = {
+  '0x29be0951309805ddcfa90592c3bf765925871344': 'PandaMania',
+  '0x870b1fa5d36696af7b3cfa0e2721872efd790b51': 'Red Panda Pals',
+  '0xc0613cde37d2eceddc496f3d85cec12ffa2bdd00': 'Bamboo Buddies'
+};
 
 const pandaTokenContract = '0x67c778b5e5705aaa46707f3f16e498beef627b0b';
 
@@ -29,6 +29,15 @@ async function checkWallets() {
   const resultsDiv = document.getElementById('results');
   resultsDiv.innerHTML = '';
 
+  // Display contract reference
+  const refBlock = document.createElement('div');
+  let refHTML = '<h4>Tracked NFT Contracts:</h4>';
+  for (const [addr, name] of Object.entries(ethContracts)) {
+    refHTML += `<div><code>${addr}</code> (${name})</div>`;
+  }
+  refBlock.innerHTML = refHTML;
+  resultsDiv.appendChild(refBlock);
+
   let totalNFTs = 0;
   let walletsWithNFTs = 0;
 
@@ -38,9 +47,9 @@ async function checkWallets() {
 
     const walletDiv = document.createElement('div');
     walletDiv.className = 'wallet-entry';
-    walletDiv.innerHTML = `<strong>{wallet}:</strong>`;
+    walletDiv.innerHTML = `<strong>${wallet}:</strong>`;
 
-    for (const ca of ethContractAddresses) {
+    for (const [ca, name] of Object.entries(ethContracts)) {
       const url = `${ALCHEMY_BASE_URL}/getNFTs?owner=${wallet}&contractAddresses[]=${ca}&withMetadata=false`;
       try {
         const res = await fetch(url);
@@ -49,11 +58,10 @@ async function checkWallets() {
         if (owned > 0) {
           found = true;
           nftCount += owned;
-          walletDiv.innerHTML += `<br> - Holds ${owned} NFTs from contract ${ca}`;
+          walletDiv.innerHTML += `<br> - Holds ${owned} NFTs from contract ${ca} (${name})`;
         }
       } catch (err) {
         walletDiv.innerHTML += `<br> - Error checking contract ${ca}`;
-        console.error(`Error fetching from Alchemy for ${wallet} / ${ca}`, err);
       }
     }
 
@@ -97,7 +105,6 @@ async function checkTokenBalance() {
     walletDiv.innerHTML += `<br><strong>Total Panda Tokens:</strong> ${formatted}`;
   } catch (err) {
     walletDiv.innerHTML += `<br> - Error checking Panda Token balance`;
-    console.error('Token balance fetch failed:', err);
   }
 
   tokenResults.appendChild(walletDiv);

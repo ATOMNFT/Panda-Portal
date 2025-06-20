@@ -199,3 +199,36 @@ body.light .app-description {
     font-size: 0.8em;
   }
 }
+
+.discord-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5865F2;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.discord-btn:hover {
+  background-color: #4752C4;
+}
+
+.discord-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+body.light .discord-btn {
+  background-color: #7289da;
+}
+
+body.light .discord-btn:hover {
+  background-color: #5b6eae;
+}

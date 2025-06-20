@@ -12,6 +12,14 @@ This is a **Progressive Web App (PWA)** that allows users to:
 
 ---
 
+## 🔒 Your Safety Matters
+
+This app **does not connect** to your wallet, ask for permissions, or interact with private keys.  
+All lookups are done using **public blockchain data**, and your assets remain completely safe.  
+You can use it **anonymously and securely**.
+
+---
+
 ## 🚀 Features
 
 | Feature                | Description                                                                 |

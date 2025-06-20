@@ -2,7 +2,10 @@
 const ethContracts = {
   '0x29be0951309805ddcfa90592c3bf765925871344': 'PandaMania',
   '0x870b1fa5d36696af7b3cfa0e2721872efd790b51': 'Red Panda Pals',
-  '0xc0613cde37d2eceddc496f3d85cec12ffa2bdd00': 'Bamboo Buddies'
+  '0xc0613cde37d2eceddc496f3d85cec12ffa2bdd00': 'Bamboo Buddies',
+  '0xb3ed773a2b61b53a7a8da02eb0555b4126b874ff': 'Panda Cubs',
+  '0x5c39cde98ebd0195cc6ccd81ab8be82948da28af': 'Red Panda Cubs',
+  '0xde07b22e52f2144bf52f5c4c4275ed1f8dd72b49': 'Bamboo Shoots'
 };
 
 const pandaTokenContract = '0x67c778b5e5705aaa46707f3f16e498beef627b0b';

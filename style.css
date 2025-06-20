@@ -36,11 +36,21 @@ button:hover {
 }
 .logo {
   width: 100px;
-  display: block;
-  margin: 0 auto 20px;
+  margin: 0;
   border-radius: 12px;
   box-shadow: 0 0 8px #0f0;
 }
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .result {
   margin-top: 20px;
 }
@@ -203,26 +213,20 @@ body.light .app-description {
 .discord-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 8px 14px;
   border: none;
   border-radius: 8px;
   background-color: #5865F2;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .discord-btn:hover {
   background-color: #4752C4;
-}
-
-.discord-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
 }
 
 body.light .discord-btn {

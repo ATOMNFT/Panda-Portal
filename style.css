@@ -181,3 +181,21 @@ body.light .app-description {
     padding: 1em;
   }
 }
+
+@media (max-width: 600px) {
+  .tracked-contracts h5 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabs button {
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tracked-contracts code {
+    font-size: 0.8em;
+  }
+}

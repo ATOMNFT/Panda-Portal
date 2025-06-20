@@ -111,3 +111,30 @@ body.light .tracked-contracts code {
 body.light .tracked-contracts h5 {
   color: #2e7d32;
 }
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #999;
+}
+
+.footer a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.app-description {
+  font-size: 0.95em;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 1em;
+  border-radius: 8px;
+  margin-bottom: 1em;
+  line-height: 1.5;
+}
+body.light .app-description {
+  background-color: #f0f0f0;
+}

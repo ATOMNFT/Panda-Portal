@@ -236,3 +236,19 @@ body.light .discord-btn {
 body.light .discord-btn:hover {
   background-color: #5b6eae;
 }
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+.github-icon {
+  fill: currentColor;
+}

@@ -11,15 +11,29 @@
 </head>
 <body class="dark">
   <div class="container">
+    <!-- Logo and Title -->
     <img src="Images/Panda-Portal-Icon.png" alt="Logo" class="logo" title="Panda NFT Checker Logo">
     <h2>Panda NFT & Token Checker</h2>
 
+    <!-- Tab Buttons -->
     <div class="tabs">
       <button onclick="showTab('nft')" title="Scan wallets for NFTs on Ethereum">🧾 NFT Scanner</button>
       <button onclick="showTab('token')" title="Track Panda Token balance from Abstract chain">📊 Token Tracker</button>
       <button onclick="toggleTheme()" title="Toggle between dark and light theme">🌓 Toggle Theme</button>
     </div>
 
+    <!-- 🧾 NFT Scanner Tab -->
+    <div id="nftTab" class="tab-content">
+      <p>Paste wallet addresses below (comma or newline separated):</p>
+      <textarea id="wallets" title="Paste multiple Ethereum wallet addresses here."></textarea>
+      <button onclick="checkWallets()" title="Click to scan for NFTs in the provided wallets.">Scan Wallets</button>
+      <button id="toggleViewBtn" onclick="toggleView()" title="Switch between text and table view.">📊 Table View</button>
+      <br><br>
+      <div class="result" id="results"></div>
+      <div class="result" id="tableResults" style="display: none;"></div>
+    </div>
+
+    <!-- 🪙 Token Tracker Tab -->
     <div id="tokenTab" class="tab-content" style="display: none;">
       <p>Track total Panda Tokens in a wallet (on Abstract chain):</p>
       <input type="text" id="trackWallet" placeholder="Enter wallet to track token balance"
@@ -29,6 +43,7 @@
     </div>
   </div>
 
+  <!-- Service Worker + Scripts -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js').then(() => {

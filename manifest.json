@@ -1,7 +1,7 @@
 
 {
-  "name": "Panda NFT & Token Checker",
-  "short_name": "PandaChecker",
+  "name": "Panda Portal",
+  "short_name": "PandaPortal",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0d1117",

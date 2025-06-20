@@ -7,10 +7,11 @@ const ethContractAddresses = [
 
 const pandaTokenContract = '0x67c778b5e5705aaa46707f3f16e498beef627b0b';
 
-const abi = ['function balanceOf(address owner) view returns (uint256)'];
-
 const ethProvider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth');
 const abstractProvider = new ethers.providers.JsonRpcProvider('https://api.mainnet.abs.xyz');
+
+const ALCHEMY_API_KEY = 'zceGjdJmrtYyTqJAHEN8yWTnwMXNKR_J';
+const ALCHEMY_BASE_URL = `https://eth-mainnet.g.alchemy.com/nft/v2/${ALCHEMY_API_KEY}`;
 
 function toggleTheme() {
   document.body.classList.toggle('dark');
@@ -37,19 +38,22 @@ async function checkWallets() {
 
     const walletDiv = document.createElement('div');
     walletDiv.className = 'wallet-entry';
-    walletDiv.innerHTML = `<strong>${wallet}:</strong>`;
+    walletDiv.innerHTML = `<strong>{wallet}:</strong>`;
 
     for (const ca of ethContractAddresses) {
-      const contract = new ethers.Contract(ca, abi, ethProvider);
+      const url = `${ALCHEMY_BASE_URL}/getNFTs?owner=${wallet}&contractAddresses[]=${ca}&withMetadata=false`;
       try {
-        const balance = await contract.balanceOf(wallet);
-        if (balance.gt(0)) {
+        const res = await fetch(url);
+        const data = await res.json();
+        const owned = data?.ownedNfts?.length || 0;
+        if (owned > 0) {
           found = true;
-          nftCount += balance.toNumber();
-          walletDiv.innerHTML += `<br> - Holds ${balance.toString()} NFTs from contract ${ca}`;
+          nftCount += owned;
+          walletDiv.innerHTML += `<br> - Holds ${owned} NFTs from contract ${ca}`;
         }
       } catch (err) {
         walletDiv.innerHTML += `<br> - Error checking contract ${ca}`;
+        console.error(`Error fetching from Alchemy for ${wallet} / ${ca}`, err);
       }
     }
 
@@ -82,9 +86,10 @@ async function checkTokenBalance() {
     return;
   }
 
+  const abi = ['function balanceOf(address owner) view returns (uint256)'];
+  const tokenContract = new ethers.Contract(pandaTokenContract, abi, abstractProvider);
   const walletDiv = document.createElement('div');
   walletDiv.innerHTML = `<strong>Tracking wallet:</strong> ${trackWallet}`;
-  const tokenContract = new ethers.Contract(pandaTokenContract, abi, abstractProvider);
 
   try {
     const tokenBalance = await tokenContract.balanceOf(trackWallet);
@@ -92,6 +97,7 @@ async function checkTokenBalance() {
     walletDiv.innerHTML += `<br><strong>Total Panda Tokens:</strong> ${formatted}`;
   } catch (err) {
     walletDiv.innerHTML += `<br> - Error checking Panda Token balance`;
+    console.error('Token balance fetch failed:', err);
   }
 
   tokenResults.appendChild(walletDiv);

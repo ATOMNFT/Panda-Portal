@@ -20,14 +20,6 @@
       <button onclick="toggleTheme()" title="Toggle between dark and light theme">🌓 Toggle Theme</button>
     </div>
 
-    <div id="nftTab" class="tab-content">
-      <p>Paste wallet addresses below (comma or newline separated):</p>
-      <textarea id="wallets" title="Paste multiple Ethereum wallet addresses here."></textarea>
-      <button onclick="checkWallets()" title="Click to scan for NFTs in the provided wallets.">Scan Wallets</button>
-      <button id="toggleViewBtn" onclick="toggleView()" title="Switch between text and table view.">📊 Table View</button>
-<br><br><div class="result" id="results"></div>
-    </div>
-
     <div id="tokenTab" class="tab-content" style="display: none;">
       <p>Track total Panda Tokens in a wallet (on Abstract chain):</p>
       <input type="text" id="trackWallet" placeholder="Enter wallet to track token balance"

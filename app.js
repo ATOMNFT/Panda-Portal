@@ -13,23 +13,41 @@ const abstractProvider = new ethers.providers.JsonRpcProvider('https://api.mainn
 const ALCHEMY_API_KEY = 'zceGjdJmrtYyTqJAHEN8yWTnwMXNKR_J';
 const ALCHEMY_BASE_URL = `https://eth-mainnet.g.alchemy.com/nft/v2/${ALCHEMY_API_KEY}`;
 
+let currentView = 'text';
+
 function toggleTheme() {
   document.body.classList.toggle('dark');
   document.body.classList.toggle('light');
 }
 
-function showTab(tabName) {
-  document.getElementById('nftTab').style.display = tabName === 'nft' ? 'block' : 'none';
-  document.getElementById('tokenTab').style.display = tabName === 'token' ? 'block' : 'none';
+function toggleView() {
+  const button = document.getElementById('toggleViewBtn');
+  const textView = document.getElementById('results');
+  const tableView = document.getElementById('tableResults');
+
+  if (currentView === 'text') {
+    textView.style.display = 'none';
+    tableView.style.display = 'block';
+    button.textContent = '📝 Text View';
+    currentView = 'table';
+  } else {
+    textView.style.display = 'block';
+    tableView.style.display = 'none';
+    button.textContent = '📊 Table View';
+    currentView = 'text';
+  }
 }
 
 async function checkWallets() {
   const input = document.getElementById('wallets').value;
   const walletList = input.split(/[\s,]+/).filter(w => w.length > 0);
-  const resultsDiv = document.getElementById('results');
-  resultsDiv.innerHTML = '';
 
-  // Display contract reference
+  const resultsDiv = document.getElementById('results');
+  const tableDiv = document.getElementById('tableResults');
+  resultsDiv.innerHTML = '';
+  tableDiv.innerHTML = '';
+
+  // Reference block
   const refBlock = document.createElement('div');
   let refHTML = '<h4>Tracked NFT Contracts:</h4>';
   for (const [addr, name] of Object.entries(ethContracts)) {
@@ -37,6 +55,14 @@ async function checkWallets() {
   }
   refBlock.innerHTML = refHTML;
   resultsDiv.appendChild(refBlock);
+
+  // Table header
+  const table = document.createElement('table');
+  table.className = 'nft-summary-table';
+  const header = table.insertRow();
+  header.insertCell().outerHTML = '<th>Wallet</th>';
+  Object.values(ethContracts).forEach(name => header.insertCell().outerHTML = `<th>${name}</th>`);
+  header.insertCell().outerHTML = '<th>Status</th>';
 
   let totalNFTs = 0;
   let walletsWithNFTs = 0;
@@ -49,19 +75,25 @@ async function checkWallets() {
     walletDiv.className = 'wallet-entry';
     walletDiv.innerHTML = `<strong>${wallet}:</strong>`;
 
+    const tableRow = table.insertRow();
+    tableRow.insertCell().textContent = wallet;
+
     for (const [ca, name] of Object.entries(ethContracts)) {
       const url = `${ALCHEMY_BASE_URL}/getNFTs?owner=${wallet}&contractAddresses[]=${ca}&withMetadata=false`;
       try {
         const res = await fetch(url);
         const data = await res.json();
         const owned = data?.ownedNfts?.length || 0;
+        tableRow.insertCell().textContent = owned;
+
         if (owned > 0) {
           found = true;
           nftCount += owned;
           walletDiv.innerHTML += `<br> - Holds ${owned} NFTs from contract ${ca} (${name})`;
         }
-      } catch (err) {
+      } catch {
         walletDiv.innerHTML += `<br> - Error checking contract ${ca}`;
+        tableRow.insertCell().textContent = 'Err';
       }
     }
 
@@ -69,8 +101,10 @@ async function checkWallets() {
       totalNFTs += nftCount;
       walletsWithNFTs++;
       walletDiv.innerHTML += `<br><span style="color:lightgreen;">✅ Official NFTs held!</span>`;
+      tableRow.insertCell().innerHTML = '✅';
     } else {
       walletDiv.innerHTML += `<br><span style="color:orange;">❌ No tracked NFTs found.</span>`;
+      tableRow.insertCell().innerHTML = '❌';
     }
 
     resultsDiv.appendChild(walletDiv);
@@ -82,6 +116,7 @@ async function checkWallets() {
     Wallets with official NFTs: ${walletsWithNFTs}<br>
     Total NFTs held from tracked contracts: ${totalNFTs}`;
   resultsDiv.appendChild(summary);
+  tableDiv.appendChild(table);
 }
 
 async function checkTokenBalance() {
@@ -103,7 +138,7 @@ async function checkTokenBalance() {
     const tokenBalance = await tokenContract.balanceOf(trackWallet);
     const formatted = ethers.utils.formatUnits(tokenBalance, 18);
     walletDiv.innerHTML += `<br><strong>Total Panda Tokens:</strong> ${formatted}`;
-  } catch (err) {
+  } catch {
     walletDiv.innerHTML += `<br> - Error checking Panda Token balance`;
   }
 

@@ -46,12 +46,24 @@ button:hover {
 
 .logo-row {
   display: flex;
+  flex-direction: column; /* <-- stack logo and tagline vertically */
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+/* Tag Line under logo */
+.tagline {
+  font-size: 1.1em;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 8px;
+  color: #4caf50;
+  opacity: 0;
+  animation: fadeIn 1.2s ease-out forwards;
+  animation-delay: 0.6s;
 }
 
 /* Fade-in animation */

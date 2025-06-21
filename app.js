@@ -159,7 +159,7 @@ async function checkTokenBalance() {
 	try {
 	  const tokenBalance = await tokenContract.balanceOf(trackWallet);
 	  const formatted = parseFloat(ethers.utils.formatUnits(tokenBalance, 18));
-	  walletDiv.innerHTML += `<br><strong>Total Panda Tokens:</strong> <span id="animatedToken">0.0000</span>`;
+	  walletDiv.innerHTML += `<br><strong>Total $PANDA Tokens:</strong> <span id="animatedToken">0.0000</span>`;
 	  tokenResults.appendChild(walletDiv);
 
 	  // Animate the balance count

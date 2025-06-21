@@ -61,6 +61,7 @@ button:hover {
   opacity: 0;
   animation: fadeIn 1.2s ease-out forwards;
   animation-delay: 0.4s;
+  text-shadow: 0 0 6px #4caf50, 0 0 12px rgba(76, 175, 80, 0.5);
 }
 
 /* Fade-in animation */

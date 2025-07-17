@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panda Portal</title>
+  <meta name="theme-color" content="#0d1117">
+  
+  <!-- Standard favicon -->
+  <link rel="icon" href="Images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
+
+  <!-- PNG favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="Images/favicon-16x16.png">
+
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="Images/apple-touch-icon.png">
+
+  <!-- Android Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="Images/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="Images/android-chrome-512x512.png">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest">
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+  <div class="container">
+    <!-- Logo and Title -->
+	<div class="banner-wrapper">
+	  <img src="Images/header-logo.png" alt="Panda Portal Banner" class="banner-img">
+	</div>
+	<p class="tagline-banner">From wallet to whoa — Proof of Panda in seconds.</p>
+  <a href="https://discord.gg/qkr7Pmr6V5" target="_blank" rel="noopener noreferrer" class="discord-btn" title="Join the PandaMania Discord">
+    <svg class="discord-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55" width="24" height="24" fill="currentColor" aria-hidden="true">
+      <path d="M60.104 4.552A58.163 58.163 0 0045.387.8a.07.07 0 00-.073.035c-2.004 3.517-3.58 7.219-4.663 11.042a55.226 55.226 0 00-16.39 0 48.76 48.76 0 00-4.675-11.042.078.078 0 00-.072-.035 58.22 58.22 0 00-14.719 3.753.067.067 0 00-.032.027C1.184 24.19-.943 43.357.293 55a.082.082 0 00.031.057 58.57 58.57 0 0017.362 8.855.077.077 0 00.084-.027c1.332-1.826 2.523-3.756 3.559-5.762a.076.076 0 00-.041-.104 56.238 56.238 0 01-8.174-3.922.077.077 0 01-.008-.129c.55-.415 1.098-.84 1.627-1.275a.07.07 0 01.074-.007c17.098 7.821 35.588 7.821 52.587 0a.068.068 0 01.075.008c.53.434 1.077.859 1.626 1.274a.077.077 0 01-.007.13 52.509 52.509 0 01-8.175 3.921.076.076 0 00-.04.105c1.038 2.006 2.228 3.936 3.56 5.762a.077.077 0 00.084.028A58.53 58.53 0 0070.61 55a.08.08 0 00.031-.056c1.309-13.683-2.163-32.75-10.47-50.391a.065.065 0 00-.067-.027zM23.725 37.394c-3.337 0-6.083-3.075-6.083-6.865 0-3.79 2.719-6.865 6.083-6.865 3.377 0 6.11 3.087 6.083 6.865 0 3.79-2.719 6.865-6.083 6.865zm23.549 0c-3.337 0-6.083-3.075-6.083-6.865 0-3.79 2.719-6.865 6.083-6.865 3.377 0 6.11 3.087 6.083 6.865 0 3.79-2.706 6.865-6.083 6.865z"/>
+    </svg>
+    <span>Join The Discord</span>
+  </a>
+    </div>
+    <h2>Panda Portal</h2>
+	
+	<hr>
+	<div class="app-description">
+	  <p><strong>How to use:</strong></p>
+	  <ul>
+		<li>🧾 <strong>NFT Scanner</strong>: Paste Ethereum wallet addresses (comma or newline separated) and click <strong>Scan Wallets</strong> to see which NFTs they hold.</li>
+		<li>📊 <strong>Token Tracker</strong>: Enter any wallet address to check its Panda Token balance on the Abstract blockchain.</li>
+		<li>🌓 Use the theme toggle to switch between Light and Dark modes anytime.</li>
+	  </ul>
+
+	  <p><strong>🔍 What does it check?</strong><br>
+		This app checks the <strong>six newest official NFT contracts</strong> from 
+		<a href="https://x.com/PandaMania_NFT" target="_blank" rel="noopener noreferrer">@PandaMania_NFT</a> 
+		to verify if the wallet(s) you provide are holding <strong>official PandaMania NFTs</strong>.
+	  </p>
+
+	  <p><strong>🔒 Your safety matters:</strong><br>
+		This app <strong>does not connect</strong> to your wallet, ask for permissions, or interact with private keys. All lookups are done using public blockchain data, and your assets remain completely safe. You can use it anonymously and securely.
+	  </p>
+	</div>
+
+    <!-- Tab Buttons -->
+    <div class="tabs">
+      <button onclick="showTab('nft')" title="Scan wallets for NFTs on Ethereum">🧾 NFT Scanner</button>
+      <button onclick="showTab('token')" title="Track Panda Token balance from Abstract chain">📊 Token Tracker</button>
+      <button onclick="toggleTheme()" title="Toggle between dark and light theme">🌓 Toggle Theme</button>
+    </div>
+
+    <!-- 🧾 NFT Scanner Tab -->
+    <div id="nftTab" class="tab-content">
+	<div class="tracked-contracts" id="alwaysVisibleContracts">
+	  <h5>Tracked NFT Contracts:</h5>
+	  <div><code>0x29be0951309805ddcfa90592c3bf765925871344</code> (PandaMania)</div>
+	  <div><code>0x870b1fa5d36696af7b3cfa0e2721872efd790b51</code> (Red Panda Pals)</div>
+	  <div><code>0xc0613cde37d2eceddc496f3d85cec12ffa2bdd00</code> (Bamboo Buddies)</div>
+	  <div><code>0xb3ed773a2b61b53a7a8da02eb0555b4126b874ff</code> (Panda Cubs)</div>
+	  <div><code>0x5c39cde98ebd0195cc6ccd81ab8be82948da28af</code> (Red Panda Cubs)</div>
+	  <div><code>0xde07b22e52f2144bf52f5c4c4275ed1f8dd72b49</code> (Bamboo Shoots)</div>
+	</div>
+      <p>Paste wallet addresses below that hold nfts by PandaMania_NFT (comma or newline separated):</p>
+      <textarea id="wallets" title="Paste multiple Ethereum wallet addresses here."></textarea>
+      <button onclick="checkWallets()" title="Click to scan for NFTs in the provided wallets.">Scan Wallets</button>
+      <button id="toggleViewBtn" onclick="toggleView()" title="Switch between text and table view.">📊 Table View</button>
+      <br><br>
+      <div class="result" id="results"></div>
+      <div class="result" id="tableResults" style="display: none;"></div>
+    </div>
+
+    <!-- 🪙 Token Tracker Tab -->
+    <div id="tokenTab" class="tab-content" style="display: none;">
+      <p>Track total Panda Tokens in a wallet (on Abstract chain):</p>
+      <input type="text" id="trackWallet" placeholder="Enter wallet to track token balance"
+             title="Enter a wallet address to check Panda Token balance.">
+      <button onclick="checkTokenBalance()" title="Click to check Panda Token balance in this wallet.">Check Balance</button>
+      <div class="result" id="tokenResults"></div>
+    </div>
+	
+	<!-- ❤️ Footer -->
+	<footer class="footer">
+	  Made with ❤️ by <a href="https://github.com/atomnft" target="_blank" rel="noopener noreferrer">ATOMNFT</a>
+	  &nbsp;|&nbsp;
+	  <a href="https://github.com/ATOMNFT/Panda-Portal" target="_blank" rel="noopener noreferrer" class="github-link">
+		<svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+		  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 
+			6.53 5.47 7.59.4.07.55-.17.55-.38 
+			0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
+			-.01-.53.63-.01 1.08.58 1.23.82.72 
+			1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78
+			-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08
+			-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 
+			1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 
+			2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56 
+			.82 1.27.82 2.15 0 3.07-1.87 
+			3.75-3.65 3.95.29.25.54.73.54 
+			1.48 0 1.07-.01 1.93-.01 2.2 
+			0 .21.15.46.55.38A8.013 8.013 0 0016 
+			8c0-4.42-3.58-8-8-8z"/>
+		</svg>
+		View on GitHub
+	  </a>
+	</footer>
+	
+	<p class="security-note">
+    🚫 The creator of this app will <strong>never DM you</strong> or message you for any reason.
+    </p>
+	
+  </div>
+
+  <!-- Service Worker + Scripts -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then(() => {
+        console.log('Service Worker Registered');
+      });
+    }
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

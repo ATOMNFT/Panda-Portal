@@ -21,7 +21,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="Images/android-chrome-512x512.png">
 
   <!-- Web App Manifest -->
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest">
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -66,11 +66,10 @@
     <div class="tabs">
       <button onclick="showTab('nft')" title="Scan wallets for NFTs on Ethereum">🧾 NFT Scanner</button>
       <button onclick="showTab('token')" title="Track Panda Token balance from Abstract chain">📊 Token Tracker</button>
-	  <button onclick="showTab('feed')" title="Latest tweets and token info">🐼 Panda Feed</button>
-      <button onclick="toggleTheme()" title="Toggle between dark and light theme">🌓 Toggle Theme</button>	  
+      <button onclick="toggleTheme()" title="Toggle between dark and light theme">🌓 Toggle Theme</button>
     </div>
 
-    <!-- NFT Scanner Tab -->
+    <!-- 🧾 NFT Scanner Tab -->
     <div id="nftTab" class="tab-content">
 	<div class="tracked-contracts" id="alwaysVisibleContracts">
 	  <h5>Tracked NFT Contracts:</h5>
@@ -90,7 +89,7 @@
       <div class="result" id="tableResults" style="display: none;"></div>
     </div>
 
-    <!-- Token Tracker Tab -->
+    <!-- 🪙 Token Tracker Tab -->
     <div id="tokenTab" class="tab-content" style="display: none;">
       <p>Track total Panda Tokens in a wallet (on Abstract chain):</p>
       <input type="text" id="trackWallet" placeholder="Enter wallet to track token balance"
@@ -98,21 +97,6 @@
       <button onclick="checkTokenBalance()" title="Click to check Panda Token balance in this wallet.">Check Balance</button>
       <div class="result" id="tokenResults"></div>
     </div>
-	
-	<!-- Panda Feed Tab -->
-	<div id="feedTab" class="tab-content" style="display: none;">
-	  <h3>Latest Tweets from PandaMania</h3>
-	  <a class="twitter-timeline"
-		 href="https://twitter.com/PandaMania_NFT?ref_src=twsrc%5Etfw"
-		 data-theme="dark"
-		 data-height="400"
-		 data-chrome="noheader nofooter noborders"
-		 data-dnt="true"
-		 data-tweet-limit="3">
-		 Tweets by PandaMania_NFT
-	  </a>
-	  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-	</div>
 	
 	<!-- ❤️ Footer -->
 	<footer class="footer">
